@@ -9,6 +9,7 @@ func main(){
 		Use: "docker [Command]",
 	}
 	rootCmd.AddCommand(InitRunCmd())
+	rootCmd.AddCommand(InitChildCmd())
 	rootCmd.AddCommand(InitLogsCmd())
 	rootCmd.Execute()
 }

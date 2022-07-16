@@ -6,7 +6,6 @@ import(
 	"fmt"
 	"time"
 	"math/rand"
-	"path/filepath"
 )
 func InitRunCmd() *cobra.Command{
 	var runCmd = &cobra.Command{

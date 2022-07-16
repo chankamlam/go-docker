@@ -30,6 +30,9 @@ func CreateParentProcess(interactive bool,tty bool,args []string) *exec.Cmd {
 		}
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
+	}else{
+		// detach mode
+		
 	}
 	return cmd
 }

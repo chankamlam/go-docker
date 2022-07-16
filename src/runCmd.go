@@ -3,6 +3,7 @@ import(
 	"github.com/spf13/cobra"
 	"docker/container"
 	"os"
+	"fmt"
 )
 func InitRunCmd() *cobra.Command{
 	var runCmd = &cobra.Command{
@@ -21,13 +22,14 @@ func InitRunCmd() *cobra.Command{
 			if err != nil{
 				panic(err)
 			}
-			//fmt.Println(is_tty)
-			//fmt.Println(is_interactive)
+			if is_detach && is_tty {
+				return fmt.Errorf("Can not use -it and -d in the same time.")
+			}
 			cmd := container.CreateParentProcess(is_interactive,is_tty,args)
 			if err := cmd.Start(); err != nil{
 				panic(err)
 			}
-			if is_detach==false{
+			if !is_detach {
 				cmd.Wait()
 			}
 			os.Exit(-1)

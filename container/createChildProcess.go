@@ -5,12 +5,13 @@ import(
 	"syscall"
 	"path/filepath"
 	"fmt"
+	"strings"
 )
 func CreateChildProcess(args []string) error{
-	fmt.Println(len(args))
-	containerName := args[0]
+	cmdArr := strings.Split(args[0]," ")
+	containerName := cmdArr[0]
 	// fmt.Println(containerName)
-	// fmt.Println(args)
+	// fmt.Println(cmdArr)
 	rootFolderPath := filepath.Join(ROOT_FOLDER_PATH_PREFEX,containerName,ROOTFS_NAME)
 	fmt.Println(rootFolderPath)
 	if err := syscall.Sethostname([]byte(containerName)); err != nil{
@@ -25,11 +26,11 @@ func CreateChildProcess(args []string) error{
 	if err := syscall.Mount("proc","/proc","proc",0,""); err != nil{
 		return err
 	}
-	path,err := exec.LookPath(args[1])
+	path,err := exec.LookPath(cmdArr[1])
 	if err != nil{
 		return err
 	}
-	if err := syscall.Exec(path, args[1:], os.Environ()); err != nil {
+	if err := syscall.Exec(path, cmdArr[1:], os.Environ()); err != nil {
 		return err
 	}
 	return nil

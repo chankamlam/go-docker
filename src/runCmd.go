@@ -26,6 +26,7 @@ func InitRunCmd() *cobra.Command{
 			}
 			if is_detach && is_tty {
 				fmt.Errorf("Can not use -it and -d in the same time.")
+				return
 			}
 			containerName,err := self.Flags().GetString("name")
 			if err != nil {

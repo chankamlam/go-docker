@@ -5,5 +5,5 @@ const(
 	IMAGE_FOLDER_PATH = "/var/lib/docker/images/base"
 	ROOT_FOLDER_PATH_PREFEX = "/var/lib/docker/containers/"
 	ROOTFS_NAME = "rootfs"
-	LOG_FILE_NAME = "log.txt"
+	LOG_FILE_NAME = "container.log"
 )

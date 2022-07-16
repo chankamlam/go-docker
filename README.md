@@ -12,4 +12,5 @@
 + 改造ContainerName产生次序
 + 增加容器文件系统目录为rootfs
 + 实现docker run --name=xx 指定容器名称
++ 实现docker run -d
 + 实现docker logs

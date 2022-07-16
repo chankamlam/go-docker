@@ -10,6 +10,7 @@ import(
 
 func CreateParentProcess(containerName string,interactive bool,tty bool,args []string) *exec.Cmd {
 	args = append([]string{containerName},args[0:]...)
+	logFilePath := filepath.Join(ROOT_FOLDER_PATH_PREFEX,containerName,LOG_FILE_NAME)
 	cmd := exec.Command("/proc/self/exe","child",strings.Join(args," "))
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		Cloneflags:syscall.CLONE_NEWUTS|syscall.CLONE_NEWPID|syscall.CLONE_NEWNS|syscall.CLONE_NEWIPC|syscall.CLONE_NEWNET|syscall.CLONE_NEWUSER,
@@ -43,7 +44,11 @@ func CreateParentProcess(containerName string,interactive bool,tty bool,args []s
 		cmd.Stderr = os.Stderr
 	}else{
 		// detach mode
-		
+		logFile,err := os.Create(logFilePath)
+		if err != nil {
+			fmt.Errorf("Can not create container.log file.")
+		}
+		cmd.Stdout = logFile
 	}
 	return cmd
 }

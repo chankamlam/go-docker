@@ -8,10 +8,9 @@ import(
 	"strings"
 )
 func CreateChildProcess(args []string) error{
+	// args len equal one like [xx yy zz], so here need to split
 	cmdArr := strings.Split(args[0]," ")
 	containerName := cmdArr[0]
-	// fmt.Println(containerName)
-	// fmt.Println(cmdArr)
 	rootFolderPath := filepath.Join(ROOT_FOLDER_PATH_PREFEX,containerName,ROOTFS_NAME)
 	fmt.Println(rootFolderPath)
 	if err := syscall.Sethostname([]byte(containerName)); err != nil{

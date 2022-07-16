@@ -7,6 +7,7 @@ import(
 	"fmt"
 )
 func CreateChildProcess(args []string) error{
+	fmt.Println(len(args))
 	containerName := args[0]
 	// fmt.Println(containerName)
 	// fmt.Println(args)

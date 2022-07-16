@@ -12,7 +12,6 @@ func InitRunCmd() *cobra.Command{
 		Use: "run",
 		Short: "Run a command in a new container",
 		Run: func(self *cobra.Command, args []string){
-			fmt.Println(len(args))
 			is_tty,err := self.Flags().GetBool("tty")
 			if err != nil{
 				panic(err)

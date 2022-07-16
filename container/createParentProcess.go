@@ -9,7 +9,7 @@ import(
 )
 
 func CreateParentProcess(containerName string,interactive bool,tty bool,args []string) *exec.Cmd {
-	args = append([]string{containerName},args)
+	args = append([]string{containerName},args[0:]...)
 	cmd := exec.Command("/proc/self/exe","child",strings.Join(args," "))
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		Cloneflags:syscall.CLONE_NEWUTS|syscall.CLONE_NEWPID|syscall.CLONE_NEWNS|syscall.CLONE_NEWIPC|syscall.CLONE_NEWNET|syscall.CLONE_NEWUSER,

@@ -6,9 +6,11 @@ import(
 	"strings"
 	"io/ioutil"
 	"path/filepath"
+	"fmt"
 )
 
 func CreateParentProcess(containerName string,interactive bool,tty bool,args []string) *exec.Cmd {
+	fmt.Println(containerName)
 	args = append([]string{containerName},args[0:]...)
 	cmd := exec.Command("/proc/self/exe","child",strings.Join(args," "))
 	cmd.SysProcAttr = &syscall.SysProcAttr{

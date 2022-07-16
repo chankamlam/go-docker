@@ -23,7 +23,7 @@ func InitRunCmd() *cobra.Command{
 				panic(err)
 			}
 			if is_detach && is_tty {
-				return fmt.Errorf("Can not use -it and -d in the same time.")
+				fmt.Errorf("Can not use -it and -d in the same time.")
 			}
 			cmd := container.CreateParentProcess(is_interactive,is_tty,args)
 			if err := cmd.Start(); err != nil{

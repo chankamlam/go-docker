@@ -6,7 +6,6 @@ import(
 	"strings"
 	"io/ioutil"
 	"path/filepath"
-	"fmt"
 )
 
 func CreateParentProcess(containerName string,interactive bool,tty bool,args []string) *exec.Cmd {

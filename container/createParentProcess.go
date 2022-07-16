@@ -32,7 +32,7 @@ func CreateParentProcess(containerName string,interactive bool,tty bool,args []s
 	rootFolderPath := filepath.Join(ROOT_FOLDER_PATH_PREFEX,containerName,ROOTFS_NAME)
 	if _, err := os.Stat(rootFolderPath); os.IsNotExist(err){
 		if err := CopyFileOrDirectory(imageFolderPath,rootFolderPath); err != nil{
-			return err
+			 panic(err)
 		}
 	}
 	if tty{

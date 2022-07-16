@@ -4,15 +4,12 @@ import(
 	"os/exec"
 	"syscall"
 	"path/filepath"
+	"fmt"
 )
-// const(
-// 	MAX_CONTAINER_ID = 32
-// 	IMAGE_FOLDER_PATH = "/var/lib/docker/images/base"
-// 	ROOT_FOLDER_PATH_PREFEX = "/var/lib/docker/containers/"
-// )
 func CreateChildProcess(args []string) error{
 	containerName := args[0]
 	rootFolderPath := filepath.Join(ROOT_FOLDER_PATH_PREFEX,containerName,ROOTFS_NAME)
+	fmt.Println(rootFolderPath)
 	if err := syscall.Sethostname([]byte(containerName)); err != nil{
 		return err
 	}

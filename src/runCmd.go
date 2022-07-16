@@ -13,7 +13,11 @@ func InitRunCmd() *cobra.Command{
 			if err != nil{
 				panic(err)
 			}
-			is_interactive,_ := self.Flags().GetBool("interactive")
+			is_interactive,err := self.Flags().GetBool("interactive")
+			if err != nil{
+				panic(err)
+			}
+			is_detach,err := self.Flags().GetBool("detach")
 			if err != nil{
 				panic(err)
 			}
@@ -23,7 +27,9 @@ func InitRunCmd() *cobra.Command{
 			if err := cmd.Start(); err != nil{
 				panic(err)
 			}
-			cmd.Wait()
+			if is_detach==false{
+				cmd.Wait()
+			}
 			os.Exit(-1)
 		},
 	}

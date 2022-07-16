@@ -16,7 +16,7 @@ import(
 func CreateChildProcess(args []string) error{
 	containerId := GenerateContainerId(MAX_CONTAINER_ID) 
 	imageFolderPath := IMAGE_FOLDER_PATH
-	rootFolderPath := ROOT_FOLDER_PATH_PREFEX + containerId
+	rootFolderPath := filepath.Join(ROOT_FOLDER_PATH_PREFEX,containerId,ROOTFS_NAME)
 	if _, err := os.Stat(rootFolderPath); os.IsNotExist(err){
 		if err := CopyFileOrDirectory(imageFolderPath,rootFolderPath); err != nil{
 			return err

@@ -10,16 +10,14 @@ import(
 func DisplayContainerLog(containerName string){
 	logFilePath := filepath.Join(ROOT_FOLDER_PATH_PREFEX,containerName,LOG_FILE_NAME)
 	logFile,err := os.Open(logFilePath)
-	defer logFile.close()
+	defer logFile.Close()
 	if err != nil {
-		fmt.Errorf("Can not find the container.log file.")
-		return 
+		panic(err)
 	}
 	content,err := ioutil.ReadAll(logFile)
 	if err != nil {
-		fmt.Errorf("can not read the container.log file.")
-		return
+		panic(err)
 	}
-	fmt.Fprint(os.Stout,string(content))
+	fmt.Fprint(os.Stdout,string(content))
 
 }

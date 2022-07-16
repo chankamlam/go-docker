@@ -47,8 +47,7 @@ func CreateParentProcess(containerName string,interactive bool,tty bool,args []s
 		// detach mode
 		logFile,err := os.Create(logFilePath)
 		if err != nil {
-			fmt.Errorf("Can not create container.log file.")
-			return
+			panic(err)
 		}
 		cmd.Stdout = logFile
 	}

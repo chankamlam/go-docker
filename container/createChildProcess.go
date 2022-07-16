@@ -7,7 +7,7 @@ import(
 	"fmt"
 )
 func CreateChildProcess(args []string) error{
-	containerName := args[0]
+	containerName := args[0:1]
 	fmt.Println(containerName)
 	fmt.Println(args)
 	rootFolderPath := filepath.Join(ROOT_FOLDER_PATH_PREFEX,containerName,ROOTFS_NAME)

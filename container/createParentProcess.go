@@ -48,6 +48,7 @@ func CreateParentProcess(containerName string,interactive bool,tty bool,args []s
 		logFile,err := os.Create(logFilePath)
 		if err != nil {
 			fmt.Errorf("Can not create container.log file.")
+			return
 		}
 		cmd.Stdout = logFile
 	}

@@ -24,8 +24,6 @@ func InitRunCmd() *cobra.Command{
 			if err != nil{
 				panic(err)
 			}
-			fmt.Println(is_detach)
-			fmt.Println(is_tty)
 			if is_detach && is_tty {
 				fmt.Println("Can not use -it and -d in the same time.")
 				return

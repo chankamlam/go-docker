@@ -15,9 +15,11 @@
 + 实现docker run -d
 + 实现docker logs
 + 使用busybox作为base image
++ 完善错误提示
 ```
 docker pull busybox
 docker run -d busybox top -b
 docker export -o busybox.tar xxxxxxxxx
+mkdir base
 tar -xvf busybox.tar -C base
 ```

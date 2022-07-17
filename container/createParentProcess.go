@@ -50,6 +50,7 @@ func CreateParentProcess(containerName string,interactive bool,tty bool,args []s
 			alert.Show(err,"014")
 		}
 		cmd.Stdout = logFile
+		alert.Println(containerName)
 	}
 	return cmd
 }

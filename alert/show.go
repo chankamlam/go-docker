@@ -29,7 +29,6 @@ func Display(msg string){
 	fmt.Println("[ERROR] %s",msg)
 }
 
-func Println(msg string)
-{
+func Println(msg string){
 	fmt.Println(msg)
 }

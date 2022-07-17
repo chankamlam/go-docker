@@ -4,7 +4,6 @@ import(
 	"docker/container"
 	"docker/alert"
 	"os"
-	"fmt"
 	"time"
 	"math/rand"
 )

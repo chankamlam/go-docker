@@ -4,7 +4,6 @@ import(
 	"os/exec"
 	"syscall"
 	"path/filepath"
-	"fmt"
 	"strings"
 )
 func CreateChildProcess(args []string) (error,string){
@@ -32,7 +31,7 @@ func CreateChildProcess(args []string) (error,string){
 	if err := syscall.Exec(path, cmdArr[1:], os.Environ()); err != nil {
 		return err,"012"
 	}
-	return nil,nil
+	return nil,""
 }
 
 

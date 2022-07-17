@@ -25,7 +25,7 @@ func InitRunCmd() *cobra.Command{
 				panic(err)
 			}
 			if is_detach && is_tty {
-				fmt.Println("Can not use -it and -d in the same time.")
+				fmt.Println("Can not use -it and -d at the same time.")
 				return
 			}
 			containerName,err := self.Flags().GetString("name")
@@ -51,6 +51,7 @@ func InitRunCmd() *cobra.Command{
 	runCmd.Flags().StringP("name","n","","Assign a name to the container")
 	return runCmd
 }
+
 func GenerateContainerId(n uint) string {
 	rand.Seed(time.Now().UnixNano())
 	const letters = "abcdefghijklmnopqrstuvwxyz0123456789"

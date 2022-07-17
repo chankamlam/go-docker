@@ -12,4 +12,12 @@
 + 改造ContainerName产生次序
 + 增加容器文件系统目录为rootfs
 + 实现docker run --name=xx 指定容器名称
++ 实现docker run -d
 + 实现docker logs
++ 使用busybox作为base image
+```
+docker pull busybox
+docker run -d busybox top -b
+docker export -o busybox.tar xxxxxxxxx
+tar -xvf busybox.tar -C base
+```

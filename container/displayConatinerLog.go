@@ -5,6 +5,7 @@ import(
 	"fmt"
 	"io/ioutil"
 	"path/filepath"
+	"docker/alert"
 )
 
 func DisplayContainerLog(containerName string){
@@ -12,11 +13,11 @@ func DisplayContainerLog(containerName string){
 	logFile,err := os.Open(logFilePath)
 	defer logFile.Close()
 	if err != nil {
-		panic(err)
+		alert.Show(err,"015")
 	}
 	content,err := ioutil.ReadAll(logFile)
 	if err != nil {
-		panic(err)
+		alert.Show(err,"016")
 	}
 	fmt.Fprint(os.Stdout,string(content))
 

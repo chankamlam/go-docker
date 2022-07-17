@@ -2,6 +2,7 @@ package main
 import(
 	"github.com/spf13/cobra"
 	"docker/container"
+	"docker/alert"
 	"os"
 	"fmt"
 	"time"
@@ -14,30 +15,30 @@ func InitRunCmd() *cobra.Command{
 		Run: func(self *cobra.Command, args []string){
 			is_tty,err := self.Flags().GetBool("tty")
 			if err != nil{
-				panic(err)
+				alert.Show(err,"001")
 			}
 			is_interactive,err := self.Flags().GetBool("interactive")
 			if err != nil{
-				panic(err)
+				alert.Show(err,"002")
 			}
 			is_detach,err := self.Flags().GetBool("detach")
 			if err != nil{
-				panic(err)
+				alert.Show(err,"003")
 			}
 			if is_detach && is_tty {
-				fmt.Println("Can not use -it and -d at the same time.")
+				alert.Show(nil,"004")
 				return
 			}
 			containerName,err := self.Flags().GetString("name")
 			if err != nil {
-				panic(err)
+				alert.Show(err,"005")
 			}
 			if containerName == "" {
 				containerName = GenerateContainerId(container.MAX_CONTAINER_ID)
 			}
 			cmd := container.CreateParentProcess(containerName,is_interactive,is_tty,args)
 			if err := cmd.Start(); err != nil{
-				panic(err)
+				alert.Show(err,"006")
 			}
 			if !is_detach {
 				cmd.Wait()
@@ -57,8 +58,8 @@ func GenerateContainerId(n uint) string {
 	const letters = "abcdefghijklmnopqrstuvwxyz0123456789"
 	b := make([]byte, n)
 	length := len(letters)
-        for i := range b {
-            b[i] = letters[rand.Intn(length)]
-        }
-        return string(b)
+	for i := range b {
+		b[i] = letters[rand.Intn(length)]
+	}
+    return string(b)
 }

@@ -6,6 +6,7 @@ import(
 	"strings"
 	"io/ioutil"
 	"path/filepath"
+	"docker/alert"
 )
 
 func CreateParentProcess(containerName string,interactive bool,tty bool,args []string) *exec.Cmd {
@@ -33,7 +34,7 @@ func CreateParentProcess(containerName string,interactive bool,tty bool,args []s
 	rootFolderPath := filepath.Join(ROOT_FOLDER_PATH_PREFEX,containerName,ROOTFS_NAME)
 	if _, err := os.Stat(rootFolderPath); os.IsNotExist(err){
 		if err := CopyFileOrDirectory(imageFolderPath,rootFolderPath); err != nil{
-			 panic(err)
+			 alert.Show(err,"013")
 		}
 	}
 	if tty{
@@ -46,7 +47,7 @@ func CreateParentProcess(containerName string,interactive bool,tty bool,args []s
 		// detach mode
 		logFile,err := os.Create(logFilePath)
 		if err != nil {
-			panic(err)
+			alert.Show(err,"014")
 		}
 		cmd.Stdout = logFile
 	}
